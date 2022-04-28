@@ -42,7 +42,7 @@ export default function Home(props) {
 
             <hr />
 
-            {/* <!-- item cards, pupulated by script --> */}
+            {/* <!-- item cards, populated by script --> */}
             <div className="row">
                 {itemCards}
             </div>

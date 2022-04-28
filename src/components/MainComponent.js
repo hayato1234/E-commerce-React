@@ -21,13 +21,14 @@ export default class Main extends Component{
 
     render(){
         const ItemWithId = () => {
-            // console.log(match.params)
-            let {itemId} = useParams();
-            return(
-                <ItemDetail item={this.state.items.filter(item =>
-                        item.id === itemId)[0]}/>
-                        // this doens't work!!
-            );
+          let { itemId } = useParams();
+          console.log(typeof(this.state.items[1].id));
+          console.log(typeof(+itemId));
+          return (
+            <ItemDetail
+              item={this.state.items.filter((item) => item.id === +itemId)[0]}
+            />
+          );
         }
 
         return(
@@ -35,7 +36,7 @@ export default class Main extends Component{
                 <Header />
                 <NavigationBar />
                 <Routes>
-                    <Route path='/home' element={<Home items={this.state.items} />} />
+                    <Route exact path='/home' element={<Home items={this.state.items} />} />
                     <Route path='/home/:itemId' element={<ItemWithId/>} />
                     <Route path='/userform' element={<UserForm />} />
                     <Route path='/officialgear' element={<OfficialGear />} />
