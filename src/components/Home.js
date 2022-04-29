@@ -33,9 +33,9 @@ export default function Home(props) {
                 <div className="col-md-8 mx-auto">
                     <div className="input-group input-group-lg">
                         <input className="form-control" type="text" placeholder="Search for items..." />
-                            <div className="input-group-append">
-                                <button className="btn btn-sm btn-secondary" type="submit"><i className="fa fa-search" aria-hidden="true"></i></button>
-                            </div>
+                        <div className="input-group-append">
+                            <button className="btn btn-secondary" type="submit"><i className="fa fa-search fa-lg" aria-hidden="true" /></button>
+                        </div>
                     </div>
                 </div>
             </div>
