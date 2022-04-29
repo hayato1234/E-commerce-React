@@ -8,9 +8,35 @@ import About from "./About";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
 import { ITEMS } from "../shared/items"
-import { Routes,Route,Navigate, useParams } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchItemList } from "../redux/ActionCreators";
 
-export default class Main extends Component{
+
+const mapStateToProps = (state) => {
+  return {items: state.items}
+};
+
+const mapDispatchToProps = {
+    fetchItemList: () => fetchItemList()
+}
+
+export const withRouter = (Component) => {
+  const Wrapper = (props) => {
+    const history = useNavigate();
+    return <Component history={history} {...props} />;
+  };
+  return Wrapper;
+};
+
+
+class Main extends Component{
 
     constructor(props){
         super(props);
@@ -48,4 +74,6 @@ export default class Main extends Component{
         );
     }
 }
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Main));
 

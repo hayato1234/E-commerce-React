@@ -18,7 +18,7 @@ export default class UserForm extends Component {
         <div class="container mt-5">
           <div class="row">
             <div class="col-12">
-              <h2>Send your electronics' information!</h2>
+              <h2>Send your item's information!</h2>
               <hr />
             </div>
             <div class="col-md-10">

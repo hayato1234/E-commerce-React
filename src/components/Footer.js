@@ -12,9 +12,9 @@ export default class Footer extends Component {
                                 <h5>Links</h5>
                                 <ul className="list-unstyled">
                                     <li><a href="/home">Home</a></li>
-                                    <li><a href="aboutus.html">About</a></li>
-                                    <li><a href="userform.html">Sell/Donate</a></li>
-                                    <li><a href="contactus.html">Officail Goods</a></li>
+                                    <li><a href="/about">About</a></li>
+                                    <li><a href="/userform">Sell/Donate</a></li>
+                                    <li><a href="/officialgear">Officail Goods</a></li>
                                 </ul>
                             </div>
                             <div className="col-6 col-sm-5 text-center">
