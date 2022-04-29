@@ -3,17 +3,13 @@ import { configureStore, combineReducers, applyMiddleware } from "@reduxjs/toolk
 import { ItemReducer } from "./itemReducer";
 import logger from "redux-logger";
 
-// const rootReducer = combineReducers({
-//     ItemReducer: ItemReducer
-// })
-
-const reducer = {
-    items: ItemReducer
-}
+// const reducer = {
+//     items: ItemReducer
+// }
 
 export const MyConfigureStore = () => {
     const store = configureStore({
-        reducer,
+        reducer: ItemReducer,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
     });
     return store;
