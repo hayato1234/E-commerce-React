@@ -7,10 +7,11 @@ function RenderItemCard({item}){
     return(
         <Card>
             <Link to={`/home/${item.id}`}>
-                <CardImg width="100%" src={item.imgPath} alt={item.title} />
+                <CardImg width="100%" src={item.image} alt={item.title} />
                 <CardBody>
                     <CardTitle>{item.title}</CardTitle>
-                    <CardText>{item.description}</CardText>
+                    {/* <CardText>{item.description}</CardText> */}
+                    <CardText>${item.price}</CardText>
                 </CardBody>
             </Link>
         </Card>
@@ -23,7 +24,7 @@ export default function Home(props) {
 
     const itemCards = props.itemsHolder.items.map(item => {
         return(
-            <div key={item.id} className="col-md-3 m-1">
+            <div key={item.id} className="col-sm-5 col-md-3 col-xl-2 m-1">
                 <RenderItemCard item={item} />
             </div>
         );

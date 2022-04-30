@@ -6,13 +6,17 @@ export default class ItemDetail extends React.Component {
     if (this.props.item) {
       return (
         <RenderItem item={this.props.item} />
-        // <div />
       );
     } else {
       console.log("false");
       return <div />;
     }
   }
+}
+
+const getItemBrand = (title)=>{
+  const brandEnd = title.search(" ");
+  return title.slice(0, brandEnd);
 }
 
 function RenderItem({ item }) {
@@ -57,32 +61,46 @@ function RenderItem({ item }) {
 
       {/* <!-- item info  --> */}
       <div className="row mt-5">
-        <div className="col">
+        <div className="col-md-6">
           <div className="media">
             <img
               id="detail-main-img"
-              src={"../" + item.imgPath}
+              src={item.brand ? "../" + item.image : item.image} //workaround: local items need "../" but API items don't. API items don't have brand.
               alt="item"
-              className="d-flex img-fluid w-50"
+              height="100"
+              className="d-flex img-fluid w-10"
             />
             <div className="media-body ml-5">
               <h1 id="title">{item.title}</h1>
               <h2 id="price">$ {item.price}</h2>
-              <button
-                id="item-detail-add-cart"
-                className="btn btn-warning my-4"
-              >
-                <i className="fa fa-shopping-cart"></i>
-                <span id="item-detail-add-cart-text">Add to Cart</span>
-              </button>
+
               <hr />
-              <p id="item-detail-brand-text">Brand: {item.brand}</p>
-              <p id="item-detail-condition-text">Condition: {item.condition}</p>
-              <p id="item-detail-model-text">Model: {item.model}</p>
-              <p id="item-detail-year-text">Year: {item.year}</p>
-              <p id="item-detail-comment-text">Comment: {item.comment}</p>
             </div>
           </div>
+        </div>
+        <div className="col-md-6 mr-auto">
+          <button id="item-detail-add-cart" className="btn btn-warning my-4">
+            <i className="fa fa-shopping-cart"></i>
+            <span id="item-detail-add-cart-text">Add to Cart</span>
+          </button>
+          <h3 id="item-detail-brand-text">
+            Brand: {item.brand ? item.brand : getItemBrand(item.title)}
+          </h3>
+          <h3 id="item-detail-condition-text">
+            Condition: {item.condition ? item.condition : item.rating.rate}
+          </h3>
+          <h3 id="item-detail-model-text">
+            Model: {item.model ? item.model : "Model 1"}
+          </h3>
+          <h3 id="item-detail-year-text">
+            Year: {item.year ? item.year : "2018"}
+          </h3>
+          <h3 id="item-detail-comment-text">
+            Comment:{" "}
+            {item.comment
+              ? item.comment
+              : "No commented added. Contact for details"}
+          </h3>
         </div>
       </div>
     </div>

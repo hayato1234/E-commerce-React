@@ -38,15 +38,22 @@ export const withRouter = (Component) => {
 
 class Main extends Component{
 
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         items: ITEMS
-    //     }
-    // }
+    constructor(props){
+        super(props);
+        this.state = {
+          didMountCount: 0
+        }
+    }
+    
 
     componentDidMount(){
-      this.props.fetchItemList();
+      if(this.state.didMountCount===0){
+          this.props.fetchItemList();
+          this.setState={
+            didMountCount: this.state.didMountCount++
+          }
+      }
+      
       // console.log(this.props.itemsHolder);
     }
 

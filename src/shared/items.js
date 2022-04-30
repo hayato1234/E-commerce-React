@@ -2,7 +2,7 @@ export const ITEMS = [
     {
         id: 0,
         title: "Nikon EOS DSLR",
-        imgPath: "assets/images/camera.jpg",
+        image: "assets/images/camera.jpg",
         price: 15,
         brand: "Nikon",
         condition: "Great",
@@ -13,7 +13,7 @@ export const ITEMS = [
     {
         id: 1,
         title: "T-fal Electric Kettle",
-        imgPath: "assets/images/elec-kettle.jpg",
+        image: "assets/images/elec-kettle.jpg",
         price: 5,
         brand: "T-fal",
         condition: "Good",
@@ -24,7 +24,7 @@ export const ITEMS = [
     {
         id: 2,
         title: "Portable Air Conditioner",
-        imgPath: "assets/images/port-ac2.jpeg",
+        image: "assets/images/port-ac2.jpeg",
         price: 80,
         brand: "LG",
         condition: "Great",
@@ -35,7 +35,7 @@ export const ITEMS = [
     {
         id: 3,
         title: "Vacuum Cleaner",
-        imgPath: "assets/images/vac.jpeg",
+        image: "assets/images/vac.jpeg",
         price: 120,
         brand: "Dyson",
         condition: "Good",
@@ -46,7 +46,7 @@ export const ITEMS = [
     {
         id: 4,
         title: "Tablet - iPad Air",
-        imgPath: "assets/images/ipad-air.jpeg",
+        image: "assets/images/ipad-air.jpeg",
         price: 200,
         brand: "Apple",
         condition: "Great",
@@ -57,7 +57,7 @@ export const ITEMS = [
     {
         id: 5,
         title: "Ultrasonic Humidifier",
-        imgPath: "assets/images/humidfier.jpeg",
+        image: "assets/images/humidfier.jpeg",
         price: 25,
         brand: "Vicks",
         condition: "Great",
