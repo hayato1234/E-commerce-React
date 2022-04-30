@@ -22,10 +22,10 @@ function RenderItem({item}) {
         <div className="row">
           <div className="col">
             <nav className="breadcrumb">
-              <a className="breadcrumb-item" href="index.html">
+              <a className="breadcrumb-item" href="/home">
                 Home
               </a>
-              <a id="breadc-category" className="breadcrumb-item" href="#">
+              <a id="breadc-category" className="breadcrumb-item" href="/home">
                 Camera and Photo
               </a>
               <span id="breadc-title" className="breadcrumb-item active">
@@ -62,7 +62,7 @@ function RenderItem({item}) {
               <img
                 id="detail-main-img"
                 src={"../"+item.imgPath}
-                alt="item picture"
+                alt="item"
                 className="d-flex img-fluid w-50"
               />
               <div className="media-body ml-5">

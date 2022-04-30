@@ -7,7 +7,6 @@ import OfficialGear from "./OfficailGear";
 import About from "./About";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
-import { ITEMS } from "../shared/items"
 import {
   Routes,
   Route,
@@ -20,7 +19,8 @@ import { fetchItemList } from "../redux/ActionCreators";
 
 
 const mapStateToProps = (state) => {
-  return {items: state.items}
+  // console.log(state);
+  return {itemsHolder: state.itemReducer}
 };
 
 const mapDispatchToProps = {
@@ -38,21 +38,26 @@ export const withRouter = (Component) => {
 
 class Main extends Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-            items: ITEMS
-        }
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         items: ITEMS
+    //     }
+    // }
+
+    componentDidMount(){
+      this.props.fetchItemList();
+      // console.log(this.props.itemsHolder);
     }
 
     render(){
         const ItemWithId = () => {
           let { itemId } = useParams();
-          console.log(typeof(this.state.items[1].id));
-          console.log(typeof(+itemId));
+          // console.log(typeof(this.state.items[1].id));
+          // console.log(typeof(+itemId));
           return (
             <ItemDetail
-              item={this.state.items.filter((item) => item.id === +itemId)[0]}
+              item={this.props.itemsHolder.items.filter((item) => item.id === +itemId)[0]}
             />
           );
         }
@@ -62,7 +67,8 @@ class Main extends Component{
                 <Header />
                 <NavigationBar />
                 <Routes>
-                    <Route exact path='/home' element={<Home items={this.state.items} />} />
+                  {/* {console.log(this.props)} */}
+                    <Route exact path='/home' element={<Home itemsHolder={this.props.itemsHolder} />} />
                     <Route path='/home/:itemId' element={<ItemWithId/>} />
                     <Route path='/userform' element={<UserForm />} />
                     <Route path='/officialgear' element={<OfficialGear />} />

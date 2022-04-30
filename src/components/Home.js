@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Loading } from "./LoadingComponent"
 
 function RenderItemCard({item}){
     return(
@@ -18,13 +19,37 @@ function RenderItemCard({item}){
 
 export default function Home(props) {
 
-    const itemCards = props.items.map(item => {
+    const itemInfo = props.itemsHolder;
+
+    const itemCards = props.itemsHolder.items.map(item => {
         return(
             <div key={item.id} className="col-md-3 m-1">
                 <RenderItemCard item={item} />
             </div>
         );
     });
+
+    if(itemInfo.isLoading){
+        return (
+          <div className="container">
+            <div className="row">
+              <Loading />
+            </div>
+          </div>
+        );
+    }
+
+    if (itemInfo.errMess) {
+      return (
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <h4>{itemInfo.errMess}</h4>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     return (
         <div className='container'>
@@ -40,6 +65,7 @@ export default function Home(props) {
                 </div>
             </div>
 
+            {/* {console.log(props.itemsHolder.isLoading)} */}
             {/* <!-- item cards, populated by script --> */}
             <div className="row">
                 {itemCards}
