@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
 export default class ItemDetail extends React.Component {
 
@@ -26,10 +28,10 @@ function RenderItem({ item }) {
       <div className="row">
         <div className="col">
           <nav className="breadcrumb">
-            <a className="breadcrumb-item" href="/home">
+            <a className="breadcrumb-item" href="/">
               Home
             </a>
-            <a id="breadc-category" className="breadcrumb-item" href="/home">
+            <a id="breadc-category" className="breadcrumb-item" href="/">
               Camera and Photo
             </a>
             <span id="breadc-title" className="breadcrumb-item active">
@@ -40,7 +42,7 @@ function RenderItem({ item }) {
       </div>
 
       {/* <!-- search bar  --> */}
-      <div className="form-row align-items-center mt-4">
+      <div className="form-row align-items-center">
         <div className="col-6 mx-auto">
           <div className="form-inline">
             <div className="input-group">
@@ -58,6 +60,15 @@ function RenderItem({ item }) {
       </div>
 
       <hr />
+
+      {/* back button */}
+      <div className="row">
+        <div className="col">
+          <Link to="/">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </Link>
+        </div>
+      </div>
 
       {/* <!-- item info  --> */}
       <div className="row mt-5">

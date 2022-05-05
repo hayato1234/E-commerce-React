@@ -11,7 +11,7 @@ export default class Footer extends Component {
                             <div className="col-4 col-sm-2 offset-1">
                                 <h5>Links</h5>
                                 <ul className="list-unstyled">
-                                    <li><a href="/home">Home</a></li>
+                                    <li><a href="/">Home</a></li>
                                     <li><a href="/about">About</a></li>
                                     <li><a href="/userform">Sell/Donate</a></li>
                                     <li><a href="/officialgear">Officail Goods</a></li>

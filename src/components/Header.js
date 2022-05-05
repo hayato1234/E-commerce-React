@@ -55,21 +55,24 @@ export default class Header extends Component {
                 <h1>Rebuild Electronics</h1>
               </div>
               <div className="col-12 col-md-4 dropdown mt-2">
-                <Button
-                  className="btn btn-sm btn-primary"
-                  role="button"
-                  id="loginButton"
-                  color="primary"
-                  onClick={this.toggleLoginModal}
+                <Dropdown
+                  size="sm"
+                  isOpen={this.state.isDropdownOpen}
+                  toggle={this.toggleLanguage}
                 >
-                  <i className="fa fa-user" aria-hidden="true"></i> Sign in
-                </Button>
-                <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleLanguage}>
-                  <DropdownToggle caret size="sm">
+                  <Button
+                    id="loginButton"
+                    color="primary"
+                    size="sm"
+                    onClick={this.toggleLoginModal}
+                  >
+                    <i className="fa fa-user" aria-hidden="true"></i> Sign in
+                  </Button>
+                  <DropdownToggle caret style={{"font-size":"0.65rem","margin-left":"3px"}}>
                     <i className="fa fa-globe" aria-hidden="true" /> Language
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem>English</DropdownItem>
+                    <DropdownItem active>English</DropdownItem>
                     <DropdownItem>日本語</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

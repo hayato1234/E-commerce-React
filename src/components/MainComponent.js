@@ -75,7 +75,7 @@ class Main extends Component{
                 <NavigationBar />
                 <Routes>
                   {/* {console.log(this.props)} */}
-                    <Route exact path='/home' element={<Home itemsHolder={this.props.itemsHolder} />} />
+                    <Route exact path='/' element={<Home itemsHolder={this.props.itemsHolder} />} />
                     <Route path='/home/:itemId' element={<ItemWithId/>} />
                     <Route path='/userform' element={<UserForm />} />
                     <Route path='/officialgear' element={<OfficialGear />} />

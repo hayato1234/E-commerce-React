@@ -15,13 +15,21 @@ h1, h2, h3 {
 }
 
 .navbar {
-  /* background-color: #abd31c; */
     background-color:#F7DD67;
 }
 .navbar .fa-shopping-cart {
   font-size: 2rem;
   color: #3046C5;
 }
+
+#loginButton{
+  font-size: 0.65rem;
+}
+
+.dropdown-item{
+  font-size: 0.65rem;
+}
+
 
 .breadcrumb {
   background-color: white;

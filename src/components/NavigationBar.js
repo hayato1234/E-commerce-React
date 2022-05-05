@@ -29,7 +29,7 @@ class NavigationBar extends Component {
     return (
       <React.Fragment>
         <Navbar light sticky="top" expand="md">
-          <NavbarBrand className="ms-5" href="/home">
+          <NavbarBrand className="ms-5" href="/">
             <img
               src="assets/images/RebuildElectronics-logos.jpeg"
               height="30"
@@ -42,7 +42,7 @@ class NavigationBar extends Component {
           <Collapse isOpen={this.state.isNavOpen} navbar>
             <Nav navbar className="ms-5">
               <NavItem>
-                <NavLink className="nav-link" to="/home">
+                <NavLink className="nav-link" to="/">
                   <i className="fa fa-home" aria-hidden="true" /> Home
                 </NavLink>
               </NavItem>
