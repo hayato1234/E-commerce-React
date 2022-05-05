@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { Loading } from "./LoadingComponent"
+import { SearchBar } from "./Search"
 
 function RenderItemCard({item}){
     return(
@@ -55,24 +56,8 @@ export default function Home(props) {
     return (
       <div className="container">
         {/* <!-- search bar  --> */}
-        <div className="form-row mt-4 mb-2">
-          <div className="col-md-8 mx-auto">
-            <div className="input-group input-group-lg">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Search for items..."
-              />
-              <div className="input-group-append">
-                <button className="btn btn-secondary" type="submit">
-                  <i className="fa fa-search fa-lg" aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* {console.log(props.itemsHolder.isLoading)} */}
+        <SearchBar />
+        
         {/* <!-- item cards, populated by script --> */}
         <div className="row justify-content-center">{itemCards}</div>
       </div>

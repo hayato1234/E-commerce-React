@@ -28,7 +28,7 @@ class NavigationBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar light sticky="top" expand="md">
+        <Navbar light sticky="top" expand="sm">
           <NavbarBrand className="ms-5" href="/">
             <img
               src="assets/images/RebuildElectronics-logos.jpeg"
@@ -39,7 +39,10 @@ class NavigationBar extends Component {
             />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNav} />
-          <Collapse isOpen={this.state.isNavOpen} navbar>
+          <Collapse
+            isOpen={this.state.isNavOpen}
+            navbar
+          >
             <Nav navbar className="ms-5">
               <NavItem>
                 <NavLink className="nav-link" to="/">
@@ -63,19 +66,15 @@ class NavigationBar extends Component {
                   Us
                 </NavLink>
               </NavItem>
-              <span className="navbar-text">
-                <a
-                  role="button"
-                  data-toggle="modal"
-                  data-target="#cartModal"
-                >
-                  <i
-                    className="fa fa-shopping-cart"
-                    style={{ fontSize: "2rem" }}
-                  />
-                </a>
-              </span>
             </Nav>
+            <span className="navbar-text">
+              <a role="button" data-toggle="modal" data-target="#cartModal">
+                <i
+                  className="fa fa-shopping-cart"
+                  style={{ fontSize: "2rem" }}
+                />
+              </a>
+            </span>
           </Collapse>
         </Navbar>
       </React.Fragment>

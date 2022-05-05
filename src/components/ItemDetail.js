@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
+import { SearchBar } from "./Search";
 
 export default class ItemDetail extends React.Component {
 
@@ -42,24 +43,7 @@ function RenderItem({ item }) {
       </div>
 
       {/* <!-- search bar  --> */}
-      <div className="form-row align-items-center">
-        <div className="col-6 mx-auto">
-          <div className="form-inline">
-            <div className="input-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Search for items..."
-              />
-              <button className="btn btn-sm btn-secondary" type="submit">
-                <i className="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <hr />
+      <SearchBar />
 
       {/* back button */}
       <div className="row">
