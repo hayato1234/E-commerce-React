@@ -32,6 +32,7 @@ export default class Header extends Component {
       isLoginModalOpen: !this.state.isLoginModalOpen
     });
   }
+  
   toggleLanguage(){
     this.setState(prevState => ({
       isDropdownOpen: !prevState.isDropdownOpen
@@ -68,7 +69,10 @@ export default class Header extends Component {
                   >
                     <i className="fa fa-user" aria-hidden="true"></i> Sign in
                   </Button>
-                  <DropdownToggle caret style={{"font-size":"0.65rem","margin-left":"3px"}}>
+                  <DropdownToggle
+                    caret
+                    style={{ "fontSize": "0.65rem", "marginLeft": "3px" }}
+                  >
                     <i className="fa fa-globe" aria-hidden="true" /> Language
                   </DropdownToggle>
                   <DropdownMenu>
@@ -90,38 +94,38 @@ export default class Header extends Component {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label class="sr-only col-form-label" htmlFor="loginEmail">
+                <Label className="sr-only col-form-label" htmlFor="loginEmail">
                   Email Address
                 </Label>
                 <Input
                   type="email"
                   name="loginEmail"
                   id="loginEmail"
-                  class="form-control form-control-sm"
+                  className="form-control form-control-sm"
                   placeholder="Enter Email"
                   required
                 />
               </FormGroup>
-              <FormGroup class="form-row">
-                <div class="form-group col-12">
-                  <label class="sr-only col-form-label" for="loginPassward">
+              <FormGroup className="form-row">
+                <div className="form-group col-12">
+                  <label className="sr-only col-form-label" htmlFor="loginPassward">
                     Password
                   </label>
                   <Input
                     type="password"
                     name="password"
                     id="loginPassword"
-                    class="form-control form-control-sm"
+                    className="form-control form-control-sm"
                     placeholder="Password"
                     required
                   />
                 </div>
               </FormGroup>
-              <FormGroup class="form-check">
-                <label class="form-check-label">
+              <FormGroup className="form-check">
+                <label className="form-check-label">
                   <Input
                     type="checkbox"
-                    class="form-check-input"
+                    className="form-check-input"
                     name=""
                     id=""
                     value="checkedValue"
@@ -129,10 +133,10 @@ export default class Header extends Component {
                   Remember me
                 </label>
               </FormGroup>
-              <FormGroup class="form-row">
+              <FormGroup className="form-row">
                 <Button
                   type="button"
-                  class="btn btn-secondary btn-sm ml-auto"
+                  className="btn btn-secondary btn-sm ml-auto"
                   onClick={this.toggleLoginModal}
                 >
                   Cancel
@@ -140,7 +144,7 @@ export default class Header extends Component {
                 <Button
                   type="submit"
                   id="loginBtn"
-                  class="btn btn-primary btn-sm ml-1"
+                  className="btn btn-primary btn-sm ml-1"
                   color="primary"
                   disabled
                 >
@@ -149,12 +153,14 @@ export default class Header extends Component {
               </FormGroup>
             </Form>
           </ModalBody>
-          <ModalFooter class="modal-footer">
-            <a class="btn btn-link btn-sm" href="#" data-dismiss="modal">
+          <ModalFooter className="modal-footer">
+            <a className="btn btn-link btn-sm" href="#" data-dismiss="modal">
               forgot your password?
             </a>
           </ModalFooter>
         </Modal>
+
+       
       </React.Fragment>
     );
   }

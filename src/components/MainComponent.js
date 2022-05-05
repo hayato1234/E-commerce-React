@@ -7,6 +7,7 @@ import OfficialGear from "./OfficailGear";
 import About from "./About";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
+import Checkout from "./Checkout"
 import {
   Routes,
   Route,
@@ -74,13 +75,13 @@ class Main extends Component{
                 <Header />
                 <NavigationBar />
                 <Routes>
-                  {/* {console.log(this.props)} */}
-                    <Route exact path='/' element={<Home itemsHolder={this.props.itemsHolder} />} />
+                    <Route path='/' element={<Home itemsHolder={this.props.itemsHolder} />} />
                     <Route path='/home/:itemId' element={<ItemWithId/>} />
                     <Route path='/userform' element={<UserForm />} />
                     <Route path='/officialgear' element={<OfficialGear />} />
                     <Route path='/about' element={<About />} />
-                    <Route path='/' element={<Navigate to="/home"/>} />
+                    {/* <Route path='/' element={<Navigate to="/home"/>} /> */}
+                    <Route path="/checkout" element={<Checkout />} />
                 </Routes>
                 <Footer />
             </div>

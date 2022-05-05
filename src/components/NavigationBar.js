@@ -1,27 +1,42 @@
 import React, { Component } from "react";
 import {
+  Button,
   Nav,
   Navbar,
   NavbarBrand,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
   NavbarToggler,
   Collapse,
   NavItem,
 } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleNav = this.toggleNav.bind(this);
     this.state = {
       isNavOpen: false,
+      isCartModalOpen: false,
     };
+
+    this.toggleNav = this.toggleNav.bind(this);
+    this.toggleCartModal = this.toggleCartModal.bind(this);
   }
 
   toggleNav() {
     this.setState({
       isNavOpen: !this.state.isNavOpen,
+    });
+  }
+
+  toggleCartModal() {
+    console.log("cart clicked")
+    this.setState({
+      isCartModalOpen: !this.state.isCartModalOpen,
     });
   }
 
@@ -39,10 +54,7 @@ class NavigationBar extends Component {
             />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggleNav} />
-          <Collapse
-            isOpen={this.state.isNavOpen}
-            navbar
-          >
+          <Collapse isOpen={this.state.isNavOpen} navbar>
             <Nav navbar className="ms-5">
               <NavItem>
                 <NavLink className="nav-link" to="/">
@@ -68,15 +80,41 @@ class NavigationBar extends Component {
               </NavItem>
             </Nav>
             <span className="navbar-text">
-              <a role="button" data-toggle="modal" data-target="#cartModal">
-                <i
-                  className="fa fa-shopping-cart"
-                  style={{ fontSize: "2rem" }}
-                />
+              <a role="button" onClick={this.toggleCartModal}>
+                <i className="fa fa-shopping-cart" aria-hidden="true" />
               </a>
             </span>
           </Collapse>
         </Navbar>
+
+        {/* shopping cart modal */}
+        <Modal
+          isOpen={this.state.isCartModalOpen}
+          toggle={this.toggleCartModal}
+        >
+          <ModalHeader toggle={this.toggleCartModal}>
+            Your shopping cart
+          </ModalHeader>
+          <ModalBody>
+            <ol>
+              <li>Item 1</li>
+              <li>Item 1</li>
+            </ol>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onClick={this.toggleCartModal}>
+              Close
+            </Button>
+            {/* <NavItem>
+              <NavLink color="primary" to="/aboutus">
+                Checkout
+              </NavLink>
+            </NavItem> */}
+            <Link onClick={this.toggleCartModal} to="/checkout">
+              <Button color="primary">checkout</Button>
+            </Link>
+          </ModalFooter>
+        </Modal>
       </React.Fragment>
     );
   }
