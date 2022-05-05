@@ -42,3 +42,7 @@ function loadItems(items){
 function failedLoadItems(error){
     return {type: ActionTypes.ITEM_LIST_FAILED, payload: error.message};
 }
+
+export function addToCart(item){
+  return {type: ActionTypes.ADD_TO_CART, payload: item};
+}

@@ -8,7 +8,11 @@ export default class ItemDetail extends React.Component {
   render() {
     if (this.props.item) {
       return (
-        <RenderItem item={this.props.item} />
+        <RenderItem
+          item={this.props.item}
+          addToCart={this.props.addToCart}
+          carth={this.props.cartHolder}
+        />
       );
     } else {
       console.log("false");
@@ -22,7 +26,14 @@ const getItemBrand = (title)=>{
   return title.slice(0, brandEnd);
 }
 
-function RenderItem({ item }) {
+function RenderItem({ item, addToCart, carth }) {
+
+  
+  const handleCart = () => {
+    addToCart(item);
+    console.log(carth.cart)
+  }
+
   return (
     <div className="container">
       {/* <!-- breadcrumb row  --> */}
@@ -49,13 +60,14 @@ function RenderItem({ item }) {
       <div className="row">
         <div className="col">
           <Link to="/">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <i className="fa fa-arrow-left" aria-hidden="true"></i>
           </Link>
         </div>
       </div>
 
       {/* <!-- item info  --> */}
       <div className="row mt-5">
+
         <div className="col-md-6">
           <div className="media">
             <img
@@ -73,8 +85,9 @@ function RenderItem({ item }) {
             </div>
           </div>
         </div>
+
         <div className="col-md-6 mr-auto">
-          <button id="item-detail-add-cart" className="btn btn-warning my-4">
+          <button id="item-detail-add-cart" className="btn btn-warning my-4" onClick={handleCart}>
             <i className="fa fa-shopping-cart"></i>
             <span id="item-detail-add-cart-text">Add to Cart</span>
           </button>

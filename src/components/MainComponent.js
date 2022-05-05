@@ -11,22 +11,24 @@ import Checkout from "./Checkout"
 import {
   Routes,
   Route,
-  Navigate,
   useParams,
   useNavigate,
 } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchItemList } from "../redux/ActionCreators";
+import { fetchItemList, addToCart } from "../redux/ActionCreators";
 
 
 const mapStateToProps = (state) => {
-  // console.log(state);
-  return {itemsHolder: state.itemReducer}
+  return {
+    itemsHolder: state.itemReducer,
+    cartHolder: state.cartReducer
+  }
 };
 
 const mapDispatchToProps = {
-    fetchItemList: () => fetchItemList()
-}
+  fetchItemList: () => fetchItemList(),
+  addToCart: (item) => addToCart(item)
+};
 
 export const withRouter = (Component) => {
   const Wrapper = (props) => {
@@ -54,37 +56,45 @@ class Main extends Component{
             didMountCount: this.state.didMountCount++
           }
       }
-      
-      // console.log(this.props.itemsHolder);
     }
 
     render(){
         const ItemWithId = () => {
           let { itemId } = useParams();
-          // console.log(typeof(this.state.items[1].id));
-          // console.log(typeof(+itemId));
           return (
             <ItemDetail
-              item={this.props.itemsHolder.items.filter((item) => item.id === +itemId)[0]}
+              item={
+                this.props.itemsHolder.items.filter(
+                  (item) => item.id === +itemId
+                )[0]
+              }
+              addToCart={this.props.addToCart}
+              cartHolder={this.props.cartHolder}
             />
           );
         }
 
-        return(
-            <div>
-                <Header />
-                <NavigationBar />
-                <Routes>
-                    <Route path='/' element={<Home itemsHolder={this.props.itemsHolder} />} />
-                    <Route path='/home/:itemId' element={<ItemWithId/>} />
-                    <Route path='/userform' element={<UserForm />} />
-                    <Route path='/officialgear' element={<OfficialGear />} />
-                    <Route path='/about' element={<About />} />
-                    {/* <Route path='/' element={<Navigate to="/home"/>} /> */}
-                    <Route path="/checkout" element={<Checkout />} />
-                </Routes>
-                <Footer />
-            </div>
+        return (
+          <div>
+            <Header />
+            <NavigationBar cartHolder={this.props.cartHolder} />
+            <Routes>
+              <Route
+                path="/"
+                element={<Home itemsHolder={this.props.itemsHolder} />}
+              />
+              <Route path="/item/:itemId" element={<ItemWithId />} />
+              <Route path="/userform" element={<UserForm />} />
+              <Route path="/officialgear" element={<OfficialGear />} />
+              <Route path="/about" element={<About />} />
+              {/* <Route path='/' element={<Navigate to="/home"/>} /> */}
+              <Route
+                path="/checkout"
+                element={<Checkout cartHolder={this.props.cartHolder} />}
+              />
+            </Routes>
+            <Footer />
+          </div>
         );
     }
 }

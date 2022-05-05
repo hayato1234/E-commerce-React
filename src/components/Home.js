@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { Loading } from "./LoadingComponent"
@@ -7,11 +7,10 @@ import { SearchBar } from "./Search"
 function RenderItemCard({item}){
     return(
         <Card>
-            <Link to={`/home/${item.id}`}>
+            <Link to={`/item/${item.id}`}>
                 <CardImg width="100%" src={item.image} alt={item.title} />
                 <CardBody>
                     <CardTitle>{item.title}</CardTitle>
-                    {/* <CardText>{item.description}</CardText> */}
                     <CardText>${item.price}</CardText>
                 </CardBody>
             </Link>

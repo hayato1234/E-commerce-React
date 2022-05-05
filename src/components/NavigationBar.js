@@ -27,6 +27,10 @@ class NavigationBar extends Component {
     this.toggleCartModal = this.toggleCartModal.bind(this);
   }
 
+  // itemsInCart = this.props.cartHolder.cart.map((item) => {
+  //   return <RenderCartItem key={item.id} item={item} />;
+  // });
+
   toggleNav() {
     this.setState({
       isNavOpen: !this.state.isNavOpen,
@@ -34,7 +38,6 @@ class NavigationBar extends Component {
   }
 
   toggleCartModal() {
-    console.log("cart clicked")
     this.setState({
       isCartModalOpen: !this.state.isCartModalOpen,
     });
@@ -96,28 +99,39 @@ class NavigationBar extends Component {
             Your shopping cart
           </ModalHeader>
           <ModalBody>
-            <ol>
-              <li>Item 1</li>
-              <li>Item 1</li>
-            </ol>
+            <RenderCartItem cartHolder={this.props.cartHolder} />
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.toggleCartModal}>
               Close
             </Button>
-            {/* <NavItem>
-              <NavLink color="primary" to="/aboutus">
-                Checkout
-              </NavLink>
-            </NavItem> */}
-            <Link onClick={this.toggleCartModal} to="/checkout">
-              <Button color="primary">checkout</Button>
+            <Link to="/checkout">
+              <Button onClick={this.toggleCartModal} color="primary">
+                checkout
+              </Button>
             </Link>
           </ModalFooter>
         </Modal>
       </React.Fragment>
     );
   }
+}
+
+function RenderCartItem({ cartHolder }) {
+  if(cartHolder.errMsg){
+    <h4>Error: {cartHolder.errMsg}</h4>
+  }
+  if (cartHolder.cart <= 0) {
+    return <h4>You don't have anything in your cart</h4>;
+  }
+  return (
+    <ol>
+      {cartHolder.cart.map((item, index) => {
+          return <li key={index}>{item.title}</li>;
+        })
+      }
+    </ol>
+  );
 }
 
 export default NavigationBar;

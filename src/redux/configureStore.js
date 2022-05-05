@@ -1,11 +1,13 @@
 // import { createStore } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { ItemReducer } from "./itemReducer";
+import { CartReducer } from "./cartReducer";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
 const reducer = {
-    itemReducer: ItemReducer
+    itemReducer: ItemReducer,
+    cartReducer: CartReducer
 }
 
 export const MyConfigureStore = () => {
