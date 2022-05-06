@@ -27,10 +27,6 @@ class NavigationBar extends Component {
     this.toggleCartModal = this.toggleCartModal.bind(this);
   }
 
-  // itemsInCart = this.props.cartHolder.cart.map((item) => {
-  //   return <RenderCartItem key={item.id} item={item} />;
-  // });
-
   toggleNav() {
     this.setState({
       isNavOpen: !this.state.isNavOpen,
@@ -85,6 +81,7 @@ class NavigationBar extends Component {
             <span className="navbar-text">
               <a role="button" onClick={this.toggleCartModal}>
                 <i className="fa fa-shopping-cart" aria-hidden="true" />
+                {this.props.cartHolder.cart.length}
               </a>
             </span>
           </Collapse>
@@ -99,7 +96,8 @@ class NavigationBar extends Component {
             Your shopping cart
           </ModalHeader>
           <ModalBody>
-            <RenderCartItem cartHolder={this.props.cartHolder} />
+            <RenderCartItem cartHolder={this.props.cartHolder} deleteCart={this.props.deleteCart} toggleCart={this.props.toggleCartModal}/>
+            Total: ${this.props.cartHolder.total}
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.toggleCartModal}>
@@ -117,17 +115,22 @@ class NavigationBar extends Component {
   }
 }
 
-function RenderCartItem({ cartHolder }) {
+function RenderCartItem({ cartHolder, deleteCart }) {
   if(cartHolder.errMsg){
     <h4>Error: {cartHolder.errMsg}</h4>
   }
   if (cartHolder.cart <= 0) {
     return <h4>You don't have anything in your cart</h4>;
   }
+
   return (
     <ol>
       {cartHolder.cart.map((item, index) => {
-          return <li key={index}>{item.title}</li>;
+          return (
+            <li key={index}>
+              {item.title} <Button close size="sm" onClick={()=>deleteCart(item)} />
+            </li>
+          ); 
         })
       }
     </ol>

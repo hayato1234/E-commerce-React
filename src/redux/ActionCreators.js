@@ -43,6 +43,14 @@ function failedLoadItems(error){
     return {type: ActionTypes.ITEM_LIST_FAILED, payload: error.message};
 }
 
+// cart ----------------------------------------
 export function addToCart(item){
   return {type: ActionTypes.ADD_TO_CART, payload: item};
+}
+
+export function deleteCart(item){
+  return {type: ActionTypes.DELETE_CART, payload: item};
+}
+export function deleteAllCart(){
+  return {type: ActionTypes.DELETE_ALL_CART};
 }

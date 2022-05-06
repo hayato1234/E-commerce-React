@@ -14,7 +14,7 @@ export default class Footer extends Component {
                                     <li><a href="/">Home</a></li>
                                     <li><a href="/about">About</a></li>
                                     <li><a href="/userform">Sell/Donate</a></li>
-                                    <li><a href="/officialgear">Officail Goods</a></li>
+                                    <li><a href="/officialgear">official items</a></li>
                                 </ul>
                             </div>
                             <div className="col-6 col-sm-5 text-center">

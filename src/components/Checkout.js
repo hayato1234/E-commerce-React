@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
 export default class Checkout extends Component {
@@ -8,6 +9,7 @@ export default class Checkout extends Component {
   }
 
   handleCheckout() {
+    this.props.deleteAllCart();
     alert("Thank you for your order! You will get a confirmation email");
   }
 
@@ -21,7 +23,7 @@ export default class Checkout extends Component {
     return (
       <ol>
         {cartHolder.cart.map((item, index) => {
-          return <li key={index}>{item.title}</li>;
+          return <li key={index}>{item.title} : ${item.price}</li>;
         })}
       </ol>
     );
@@ -35,18 +37,24 @@ export default class Checkout extends Component {
             <Col sm={3}>
               <h4>Shipping Address</h4>
             </Col>
-            <Col>
+            <Col sm={8}>
               <p>James J. Gilstrap</p>
               <p>2066 Paul Wayne Haggerty Road Kenner, LA 70065</p>
+            </Col>
+            <Col>
+              <i className="fa fa-edit" />
             </Col>
           </Row>
           <Row className="pt-3 border-bottom">
             <Col sm={3}>
               <h4>Payment Method</h4>
             </Col>
-            <Col>
+            <Col sm={8}>
               <p>Visa ending -1234</p>
               <p>Billing Address: same as shipping address</p>
+            </Col>
+            <Col>
+              <i className="fa fa-edit" />
             </Col>
           </Row>
 
@@ -62,16 +70,18 @@ export default class Checkout extends Component {
           <Row className=" pt-3">
             <Col sm={3}></Col>
             <Col sm={5}>
-              <h4>Order Total: $50</h4>
+              <h4>Order Total: ${this.props.cartHolder.total}</h4>
             </Col>
             <Col>
-              <button
-                id="placeOrderBtn"
-                className="btn btn-warning"
-                onClick={this.handleCheckout}
-              >
-                Place your order
-              </button>
+              <Link to='/'>
+                <button
+                  id="placeOrderBtn"
+                  className="btn btn-warning"
+                  onClick={this.handleCheckout}
+                >
+                  Place your order
+                </button>
+              </Link>
             </Col>
           </Row>
         </Container>

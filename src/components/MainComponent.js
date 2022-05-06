@@ -15,7 +15,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchItemList, addToCart } from "../redux/ActionCreators";
+import { fetchItemList, addToCart, deleteAllCart, deleteCart } from "../redux/ActionCreators";
 
 
 const mapStateToProps = (state) => {
@@ -27,7 +27,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchItemList: () => fetchItemList(),
-  addToCart: (item) => addToCart(item)
+  addToCart: (item) => addToCart(item),
+  deleteCart: (item) => deleteCart(item),
+  deleteAllCart: () => deleteAllCart()
 };
 
 export const withRouter = (Component) => {
@@ -77,7 +79,11 @@ class Main extends Component{
         return (
           <div>
             <Header />
-            <NavigationBar cartHolder={this.props.cartHolder} />
+            <NavigationBar
+              cartHolder={this.props.cartHolder}
+              deleteCart={this.props.deleteCart}
+              deleteAllCart={this.props.deleteAllCart}
+            />
             <Routes>
               <Route
                 path="/"
@@ -85,12 +91,24 @@ class Main extends Component{
               />
               <Route path="/item/:itemId" element={<ItemWithId />} />
               <Route path="/userform" element={<UserForm />} />
-              <Route path="/officialgear" element={<OfficialGear />} />
+              <Route
+                path="/officialgear"
+                element={
+                  <OfficialGear
+                    cartHolder={this.props.cartHolder}
+                    addToCart={this.props.addToCart}
+                  />
+                }
+              />
               <Route path="/about" element={<About />} />
-              {/* <Route path='/' element={<Navigate to="/home"/>} /> */}
               <Route
                 path="/checkout"
-                element={<Checkout cartHolder={this.props.cartHolder} />}
+                element={
+                  <Checkout
+                    cartHolder={this.props.cartHolder}
+                    deleteAllCart={this.props.deleteAllCart}
+                  />
+                }
               />
             </Routes>
             <Footer />

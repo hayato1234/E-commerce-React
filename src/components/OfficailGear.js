@@ -1,38 +1,39 @@
 import React, {Component} from "react";
+import { Card, CardBody, CardFooter, CardImg, CardText, CardTitle, Button } from "reactstrap";
+import { addToCart } from "../redux/ActionCreators";
+import { officialItems } from "../shared/officialItems";
 
-export default class OfficialGear extends Component{
-    render(){
-        return (
-          <React.Fragment>
-            <div className="container mt-5">
-              <div className="row">
-                <div className="card w-50 p-5">
-                  <img
-                    className="card-img-top img-fluid"
-                    src="assets/images//Gear-tshirt.png"
-                    alt="logo t-shirt"
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title">T-shirt</h4>
-                    <p className="card-text">$30</p>
-                    <button className="btn btn-warning my-4">Add to Cart</button>
-                  </div>
-                </div>
-                <div className="card w-50 p-5">
-                  <img
-                    className="card-img-top img-fluid"
-                    src="assets/images/gear_mug.png"
-                    alt="logo mug"
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title">Mug</h4>
-                    <p className="card-text">$15</p>
-                    <button className="btn btn-warning my-4">Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </React.Fragment>
-        );
-    }
+export default class OfficialGear extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  offItems = officialItems.map((item) => {
+    return <this.RenderItems item={item} addToCart={this.props.addToCart} />;
+  });
+
+  render() {
+    return (
+      <React.Fragment>
+        <div className="container mt-5">
+          <div className="row">{this.offItems}</div>
+        </div>
+      </React.Fragment>
+    );
+  }
+
+  RenderItems({ item, addToCart }) {
+    return (
+      <Card className="w-50 p-5">
+        <CardImg className="img-fluid" src={item.image} alt={item.title} />
+        <CardBody>
+          <CardTitle>{item.title}</CardTitle>
+          <CardText>$ {item.price}</CardText>
+          <Button onClick={()=>addToCart(item)} color="warning">
+            Add to Cart
+          </Button>
+        </CardBody>
+      </Card>
+    );
+  }
 }

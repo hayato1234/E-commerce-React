@@ -28,7 +28,6 @@ const getItemBrand = (title)=>{
 
 function RenderItem({ item, addToCart, carth }) {
 
-  
   const handleCart = () => {
     addToCart(item);
     console.log(carth.cart)
@@ -44,7 +43,7 @@ function RenderItem({ item, addToCart, carth }) {
               Home
             </a>
             <a id="breadc-category" className="breadcrumb-item" href="/">
-              Camera and Photo
+              {item.category? item.category: "other"}
             </a>
             <span id="breadc-title" className="breadcrumb-item active">
               Nikon D-22
