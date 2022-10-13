@@ -10,9 +10,6 @@ import {
   Input,
   Label,
   Dropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
 } from "reactstrap";
 
 export default class Header extends Component {
