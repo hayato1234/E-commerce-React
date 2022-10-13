@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import { Card, CardBody, CardFooter, CardImg, CardText, CardTitle, Button } from "reactstrap";
-import { addToCart } from "../redux/ActionCreators";
+import { Card, CardBody, CardImg, CardText, CardTitle, Button } from "reactstrap";
 import { officialItems } from "../shared/officialItems";
 
 export default class OfficialGear extends Component {

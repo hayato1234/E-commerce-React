@@ -3,11 +3,12 @@ import Header from "./Header";
 import NavigationBar from "./NavigationBar";
 import Home from "./Home";
 import UserForm from "./UserForm";
-import OfficialGear from "./OfficailGear";
+import OfficialGear from "./OfficialGear";
 import About from "./About";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
 import Checkout from "./Checkout"
+import SearchResult from "./SearchResult";
 import {
   Routes,
   Route,
@@ -76,6 +77,17 @@ class Main extends Component{
           );
         }
 
+        const SearchWithKey = () => {
+          const {keywords} = useParams();
+          return (
+            <SearchResult
+              keywords={keywords}
+              itemsHolder={this.props.itemsHolder}
+            />
+            // <p>hello</p>
+          );
+        }
+
         return (
           <div>
             <Header />
@@ -110,6 +122,7 @@ class Main extends Component{
                   />
                 }
               />
+              <Route path="/search-result/:keywords" element={<SearchWithKey />} />
             </Routes>
             <Footer />
           </div>

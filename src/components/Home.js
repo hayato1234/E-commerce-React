@@ -22,9 +22,9 @@ export default function Home(props) {
 
     const itemInfo = props.itemsHolder;
 
-    const itemCards = props.itemsHolder.items.map(item => {
+    const itemCards = itemInfo.items.map( (item ,index) => {
         return(
-            <div key={item.id} className="col-sm-5 col-md-3 col-xl-2 m-1">
+            <div key={index} className="col-sm-5 col-md-3 col-xl-2 m-1">
                 <RenderItemCard item={item} />
             </div>
         );

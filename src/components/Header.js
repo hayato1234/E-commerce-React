@@ -10,32 +10,31 @@ import {
   Input,
   Label,
   Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
 } from "reactstrap";
 
 export default class Header extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       isLoginModalOpen: false,
-      isDropdownOpen: false
-    }
+      isDropdownOpen: false,
+    };
     this.toggleLoginModal = this.toggleLoginModal.bind(this);
     this.toggleLanguage = this.toggleLanguage.bind(this);
   }
 
   toggleLoginModal() {
     this.setState({
-      isLoginModalOpen: !this.state.isLoginModalOpen
+      isLoginModalOpen: !this.state.isLoginModalOpen,
     });
   }
-  
-  toggleLanguage(){
-    this.setState(prevState => ({
-      isDropdownOpen: !prevState.isDropdownOpen
+
+  toggleLanguage() {
+    this.setState((prevState) => ({
+      isDropdownOpen: !prevState.isDropdownOpen,
     }));
   }
 
@@ -69,7 +68,7 @@ export default class Header extends Component {
                   >
                     <i className="fa fa-user" aria-hidden="true"></i> Sign in
                   </Button>
-                  <DropdownToggle
+                  {/* <DropdownToggle
                     caret
                     style={{ "fontSize": "0.65rem", "marginLeft": "3px" }}
                   >
@@ -78,7 +77,7 @@ export default class Header extends Component {
                   <DropdownMenu>
                     <DropdownItem active>English</DropdownItem>
                     <DropdownItem>日本語</DropdownItem>
-                  </DropdownMenu>
+                  </DropdownMenu> */}
                 </Dropdown>
               </div>
             </div>
@@ -108,7 +107,10 @@ export default class Header extends Component {
               </FormGroup>
               <FormGroup className="form-row">
                 <div className="form-group col-12">
-                  <label className="sr-only col-form-label" htmlFor="loginPassward">
+                  <label
+                    className="sr-only col-form-label"
+                    htmlFor="loginPassward"
+                  >
                     Password
                   </label>
                   <Input
@@ -159,8 +161,6 @@ export default class Header extends Component {
             </a>
           </ModalFooter>
         </Modal>
-
-       
       </React.Fragment>
     );
   }
