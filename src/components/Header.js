@@ -156,7 +156,7 @@ export default class Header extends Component {
             </Form>
           </ModalBody>
           <ModalFooter className="modal-footer">
-            <a className="btn btn-link btn-sm" href="#" data-dismiss="modal">
+            <a className="btn btn-link btn-sm" href="#/" data-dismiss="modal">
               forgot your password?
             </a>
           </ModalFooter>
