@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Header from "./Header";
 import NavigationBar from "./NavigationBar";
 import Home from "./Home";
@@ -7,30 +7,29 @@ import OfficialGear from "./OfficialGear";
 import About from "./About";
 import Footer from "./Footer";
 import ItemDetail from "./ItemDetail";
-import Checkout from "./Checkout"
+import Checkout from "./Checkout";
 import SearchResult from "./SearchResult";
-import {
-  Routes,
-  Route,
-  useParams,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchItemList, addToCart, deleteAllCart, deleteCart } from "../redux/ActionCreators";
-
+import {
+  fetchItemList,
+  addToCart,
+  deleteAllCart,
+  deleteCart,
+} from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
   return {
     itemsHolder: state.itemReducer,
-    cartHolder: state.cartReducer
-  }
+    cartHolder: state.cartReducer,
+  };
 };
 
 const mapDispatchToProps = {
   fetchItemList: () => fetchItemList(),
   addToCart: (item) => addToCart(item),
   deleteCart: (item) => deleteCart(item),
-  deleteAllCart: () => deleteAllCart()
+  deleteAllCart: () => deleteAllCart(),
 };
 
 export const withRouter = (Component) => {
@@ -41,94 +40,90 @@ export const withRouter = (Component) => {
   return Wrapper;
 };
 
+class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      didMountCount: 0,
+    };
+  }
 
-class Main extends Component{
-
-    constructor(props){
-        super(props);
-        this.state = {
-          didMountCount: 0
-        }
+  componentDidMount() {
+    if (this.state.didMountCount === 0) {
+      this.props.fetchItemList();
+      this.setState = {
+        didMountCount: this.state.didMountCount + 1,
+      };
     }
-    
+  }
 
-    componentDidMount(){
-      if(this.state.didMountCount===0){
-          this.props.fetchItemList();
-          this.setState={
-            didMountCount: this.state.didMountCount++
+  render() {
+    const ItemWithId = () => {
+      let { itemId } = useParams();
+      return (
+        <ItemDetail
+          item={
+            this.props.itemsHolder.items.filter(
+              (item) => item.id === +itemId
+            )[0]
           }
-      }
-    }
+          addToCart={this.props.addToCart}
+          cartHolder={this.props.cartHolder}
+        />
+      );
+    };
 
-    render(){
-        const ItemWithId = () => {
-          let { itemId } = useParams();
-          return (
-            <ItemDetail
-              item={
-                this.props.itemsHolder.items.filter(
-                  (item) => item.id === +itemId
-                )[0]
-              }
-              addToCart={this.props.addToCart}
-              cartHolder={this.props.cartHolder}
-            />
-          );
-        }
+    const SearchWithKey = () => {
+      const { keywords } = useParams();
+      return (
+        <SearchResult
+          keywords={keywords}
+          itemsHolder={this.props.itemsHolder}
+        />
+        // <p>hello</p>
+      );
+    };
 
-        const SearchWithKey = () => {
-          const {keywords} = useParams();
-          return (
-            <SearchResult
-              keywords={keywords}
-              itemsHolder={this.props.itemsHolder}
-            />
-            // <p>hello</p>
-          );
-        }
-
-        return (
-          <div>
-            <Header />
-            <NavigationBar
-              cartHolder={this.props.cartHolder}
-              deleteCart={this.props.deleteCart}
-              deleteAllCart={this.props.deleteAllCart}
-            />
-            <Routes>
-              <Route
-                path="/"
-                element={<Home itemsHolder={this.props.itemsHolder} />}
+    return (
+      <div>
+        <Header />
+        <NavigationBar
+          cartHolder={this.props.cartHolder}
+          deleteCart={this.props.deleteCart}
+          deleteAllCart={this.props.deleteAllCart}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home itemsHolder={this.props.itemsHolder} />}
+          />
+          <Route path="/item/:itemId" element={<ItemWithId />} />
+          <Route path="/userform" element={<UserForm />} />
+          <Route
+            path="/officialgear"
+            element={
+              <OfficialGear
+                cartHolder={this.props.cartHolder}
+                addToCart={this.props.addToCart}
               />
-              <Route path="/item/:itemId" element={<ItemWithId />} />
-              <Route path="/userform" element={<UserForm />} />
-              <Route
-                path="/officialgear"
-                element={
-                  <OfficialGear
-                    cartHolder={this.props.cartHolder}
-                    addToCart={this.props.addToCart}
-                  />
-                }
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                cartHolder={this.props.cartHolder}
+                deleteAllCart={this.props.deleteAllCart}
               />
-              <Route path="/about" element={<About />} />
-              <Route
-                path="/checkout"
-                element={
-                  <Checkout
-                    cartHolder={this.props.cartHolder}
-                    deleteAllCart={this.props.deleteAllCart}
-                  />
-                }
-              />
-              <Route path="/search-result/:keywords" element={<SearchWithKey />} />
-            </Routes>
-            <Footer />
-          </div>
-        );
-    }
+            }
+          />
+          <Route path="/search-result/:keywords" element={<SearchWithKey />} />
+        </Routes>
+        <Footer />
+      </div>
+    );
+  }
 }
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Main));
-
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

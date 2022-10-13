@@ -79,7 +79,7 @@ class NavigationBar extends Component {
               </NavItem>
             </Nav>
             <span className="navbar-text">
-              <a role="button" onClick={this.toggleCartModal}>
+              <a role="button" onClick={this.toggleCartModal} href="#/">
                 <i className="fa fa-shopping-cart" aria-hidden="true" />
                 {this.props.cartHolder.cart.length}
               </a>
@@ -96,7 +96,11 @@ class NavigationBar extends Component {
             Your shopping cart
           </ModalHeader>
           <ModalBody>
-            <RenderCartItem cartHolder={this.props.cartHolder} deleteCart={this.props.deleteCart} toggleCart={this.props.toggleCartModal}/>
+            <RenderCartItem
+              cartHolder={this.props.cartHolder}
+              deleteCart={this.props.deleteCart}
+              toggleCart={this.props.toggleCartModal}
+            />
             Total: ${this.props.cartHolder.total}
           </ModalBody>
           <ModalFooter>
@@ -116,8 +120,8 @@ class NavigationBar extends Component {
 }
 
 function RenderCartItem({ cartHolder, deleteCart }) {
-  if(cartHolder.errMsg){
-    <h4>Error: {cartHolder.errMsg}</h4>
+  if (cartHolder.errMsg) {
+    <h4>Error: {cartHolder.errMsg}</h4>;
   }
   if (cartHolder.cart <= 0) {
     return <h4>You don't have anything in your cart</h4>;
@@ -126,13 +130,13 @@ function RenderCartItem({ cartHolder, deleteCart }) {
   return (
     <ol>
       {cartHolder.cart.map((item, index) => {
-          return (
-            <li key={index}>
-              {item.title} <Button close size="sm" onClick={()=>deleteCart(item)} />
-            </li>
-          ); 
-        })
-      }
+        return (
+          <li key={index}>
+            {item.title}{" "}
+            <Button close size="sm" onClick={() => deleteCart(item)} />
+          </li>
+        );
+      })}
     </ol>
   );
 }

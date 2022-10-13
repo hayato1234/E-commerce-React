@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
 import { SearchBar } from "./Search";
 
 export default class ItemDetail extends React.Component {
-
   render() {
     if (this.props.item) {
       return (
@@ -21,17 +19,16 @@ export default class ItemDetail extends React.Component {
   }
 }
 
-const getItemBrand = (title)=>{
+const getItemBrand = (title) => {
   const brandEnd = title.search(" ");
   return title.slice(0, brandEnd);
-}
+};
 
 function RenderItem({ item, addToCart, carth }) {
-
   const handleCart = () => {
     addToCart(item);
-    console.log(carth.cart)
-  }
+    console.log(carth.cart);
+  };
 
   return (
     <div className="container">
@@ -43,7 +40,7 @@ function RenderItem({ item, addToCart, carth }) {
               Home
             </a>
             <a id="breadc-category" className="breadcrumb-item" href="/">
-              {item.category? item.category: "other"}
+              {item.category ? item.category : "other"}
             </a>
             <span id="breadc-title" className="breadcrumb-item active">
               Nikon D-22
@@ -66,7 +63,6 @@ function RenderItem({ item, addToCart, carth }) {
 
       {/* <!-- item info  --> */}
       <div className="row mt-5">
-
         <div className="col-md-6">
           <div className="media">
             <img
@@ -86,7 +82,11 @@ function RenderItem({ item, addToCart, carth }) {
         </div>
 
         <div className="col-md-6 mr-auto">
-          <button id="item-detail-add-cart" className="btn btn-warning my-4" onClick={handleCart}>
+          <button
+            id="item-detail-add-cart"
+            className="btn btn-warning my-4"
+            onClick={handleCart}
+          >
             <i className="fa fa-shopping-cart"></i>
             <span id="item-detail-add-cart-text">Add to Cart</span>
           </button>

@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Col,
-  FormFeedback,
-} from "reactstrap";
+import { Input } from "reactstrap";
 
 export default class UserForm extends Component {
   render() {

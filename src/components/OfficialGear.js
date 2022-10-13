@@ -1,12 +1,15 @@
-import React, {Component} from "react";
-import { Card, CardBody, CardImg, CardText, CardTitle, Button } from "reactstrap";
+import React, { Component } from "react";
+import {
+  Card,
+  CardBody,
+  CardImg,
+  CardText,
+  CardTitle,
+  Button,
+} from "reactstrap";
 import { officialItems } from "../shared/officialItems";
 
 export default class OfficialGear extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   offItems = officialItems.map((item) => {
     return <this.RenderItems item={item} addToCart={this.props.addToCart} />;
   });
@@ -28,7 +31,7 @@ export default class OfficialGear extends Component {
         <CardBody>
           <CardTitle>{item.title}</CardTitle>
           <CardText>$ {item.price}</CardText>
-          <Button onClick={()=>addToCart(item)} color="warning">
+          <Button onClick={() => addToCart(item)} color="warning">
             Add to Cart
           </Button>
         </CardBody>
